@@ -1,24 +1,28 @@
 import orders.Order;
 import products.Product;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.IntStream;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class ShoppingCart {
 
-    private List<Product> allProducts;
+    private Map<Product, Integer> allProducts;
 
     public ShoppingCart() {
-        this.allProducts = new ArrayList<>();
+        this.allProducts = new LinkedHashMap<>();
     }
 
     public int cartSize() {
-        return allProducts.size();
+        return allProducts.values().stream().mapToInt(s -> s).sum();
     }
 
     public void add(Product product, int quantity) {
-        IntStream.range(0, quantity).forEach(index -> allProducts.add(product));
+        if (allProducts.containsKey(product)) {
+            int currentQuantity = allProducts.get(product);
+            allProducts.put(product, currentQuantity + quantity);
+        } else {
+            allProducts.put(product, quantity);
+        }
     }
 
     public Order createOrder() {
