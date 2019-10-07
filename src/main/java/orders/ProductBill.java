@@ -22,13 +22,12 @@ public class ProductBill {
     }
 
     public double calculateTotalTax() {
-        return (quantity * getProductPrice() * product.getTaxPercentage() * 100) / (100 * 100);
+        return (quantity * getProductPrice() * product.getTaxPercentage()) / 100;
     }
 
     public double getProductPrice() {
         return product.getPrice();
     }
-
 
     @Override
     public String toString() {
