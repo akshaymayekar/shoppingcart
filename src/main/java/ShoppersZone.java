@@ -19,8 +19,9 @@ public class ShoppersZone {
             System.out.println("** ShoppersZone ** \t\t Cart(" + shoppingCart.cartSize() + ")");
             for (int i = 0; i < allProducts.size(); i++) {
                 Product product = allProducts.get(i);
-                System.out.println((i + 1) + ". " + product.getName() + "\t\t" + product.getPrice());
+                System.out.println(String.format("%2d %-12s%3.2f", (i+1), product.getName(), product.getPrice()));
             }
+            System.out.println("********************************************************");
             System.out.print(" Add product to cart ( or Enter X to proceed for Bill) : ");
             String input = scanner.next();
             if (input.equalsIgnoreCase("X")) {
